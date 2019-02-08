@@ -17,7 +17,7 @@ if(isset($_POST['search'])){
       $cname = $row['cname'];
       $hname = $row['hotels'];
       $id = $row['id'];
-      $output .= '<div>'.$cname.' '.$hname.'</div>';
+      $output .= '<div>'.$cname.' -------> '.$hname.'</div>';
     }
   }
 
