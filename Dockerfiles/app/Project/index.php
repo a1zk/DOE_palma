@@ -1,6 +1,5 @@
 <?php
 $con = mysqli_connect("localhost","php_user","php_user","search_db") or die ("connection error");
-//mysqli_select_db($con, "search_db") or die ("db doesn't exist!");
 $output = '';
 //collect info
 if(isset($_POST['search'])){
