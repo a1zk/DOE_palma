@@ -6,6 +6,8 @@ services:
 
   app:
    container_name: search_app
+   deploy:
+      replicas: 3
    dockerfile: Dockerfiles/app_search:0.1
    links:
      - db_app
@@ -16,6 +18,8 @@ services:
 
   db_app:
     container_name: db_app
+    deploy:
+      replicas: 3
     dockerfile: Dockerfiles/db_app:0.1
     volumes:
      - /data/mysql/:/var/lib/mysql
@@ -26,6 +30,8 @@ services:
   web:
     container_name: web
     dockerfile: Dockerfiles/web:0.1
+    deploy:
+      replicas: 3
     ports:
      - 8080:80
     networks:
