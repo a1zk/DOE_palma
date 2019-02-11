@@ -1,0 +1,33 @@
+version: '3.2'
+
+networks:
+  simple_app:
+services:
+
+  app:
+   container_name: search_app
+   dockerfile: Dockerfiles/app_search:0.1
+   links:
+     - db_app
+     - web
+   networks:
+     - simple_app
+   restart: always
+
+  db_app:
+    container_name: db_app
+    dockerfile: Dockerfiles/db_app:0.1
+    volumes:
+     - /data/mysql/:/var/lib/mysql
+    networks:
+     - simple_app
+    restart: always
+
+  web:
+    container_name: web
+    dockerfile: Dockerfiles/web:0.1
+    ports:
+     - 8080:80
+    networks:
+     - simple_app
+    restart: always
