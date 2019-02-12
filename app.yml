@@ -2,38 +2,42 @@ version: '3.2'
 
 networks:
   simple_app:
+volumes:
+  data:
 services:
 
   app:
-   container_name: search_app
+   image: app:0.1
    deploy:
       replicas: 3
-   dockerfile: Dockerfiles/app_search:0.1
-   links:
-     - db_app
+      restart_policy:
+        condition: on-failure
+   depends_on:
+     - app_db
      - web
    networks:
      - simple_app
-   restart: always
 
-  db_app:
-    container_name: db_app
+  db:
+   image: app_db:0.1
     deploy:
-      replicas: 3
-    dockerfile: Dockerfiles/db_app:0.1
+      replicas: 1
+    restart_policy:
+      condition: on-failure
     volumes:
-     - /data/mysql/:/var/lib/mysql
+      - data:/var/lib/mysql
     networks:
-     - simple_app
-    restart: always
+      - simple_app
 
   web:
-    container_name: web
-    dockerfile: Dockerfiles/web:0.1
-    deploy:
-      replicas: 3
-    ports:
-     - 8080:80
-    networks:
+  image: app_web:0.1
+  depends_on:
+     - app
+   deploy:
+     replicas: 3
+   restart_policy:
+     condition: on-failure
+   ports:
+     - 80:80
+   networks:
      - simple_app
-    restart: always
