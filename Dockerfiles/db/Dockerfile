@@ -8,3 +8,6 @@ ENV MYSQL_PASSWORD=php_user
 
 #Add scripts to image
 COPY ./scripts/ /docker-entrypoint-initdb.d/
+
+#Add config
+COPY mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
