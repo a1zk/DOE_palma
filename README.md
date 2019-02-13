@@ -1,5 +1,5 @@
 # Search_app:0.1
-This is a simple web application for demo.
+This is a web application for demo.
 ## Requirement
   - Docker
   - Docker Swarm as well.
