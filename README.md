@@ -19,6 +19,5 @@ This is a simple web application for demo.
 
 * [Documentation] - information about app and improvement steps.
 
-[//]:
 
    [Documentation]: <https://github.com/a1zk/DOE_palma/tree/master/Documents>
